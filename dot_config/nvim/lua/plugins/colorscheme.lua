@@ -4,7 +4,7 @@ return {
   {
     "1borgy/nyappuccin.nvim",
     -- dir = "/Users/ellie/dev/nyappuccin.nvim",
-    dependencies = "lush.nvim",
+    dependencies = "rktjmp/lush.nvim",
     priority = 10000,
     opts = {},
   },
