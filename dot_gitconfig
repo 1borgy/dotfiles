@@ -1,0 +1,19 @@
+[include]
+path = "~/.gitconfig_local"
+
+[alias]
+fixup = "!git add .; git commit --fixup HEAD"
+die = "reset --hard HEAD"
+branch-name = "!git rev-parse --abbrev-ref HEAD"
+publish = "!git push -u origin $(git branch-name)"
+hist = "!git log --pretty='%Cred%h%Creset %Cblue%an%Creset %Cgreen%s%Creset' -n 20"
+
+[core]
+editor = nvim
+excludesFile = "~/.gitignore"
+
+[rebase]
+autosquash = true
+
+[gpg]
+format = ssh
