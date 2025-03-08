@@ -25,22 +25,17 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+      bigfile = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
-      dim = { enabled = true, duration = { step = 15, total = 150 } },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
-      terminal = { win = { style = "above", minimal = true, wo = { cursorline = true } } },
-      bigfile = { enabled = true },
+      dim = { duration = { step = 15, total = 150 } },
+      terminal = { win = { style = "float", border = "rounded", wo = { cursorline = true } } },
       notifier = {
         margin = { right = 3, bottom = 1 },
         top_down = false,
-        style = {
-          wo = {
-            winblend = 0,
-          },
-        },
       },
       scroll = {
         animate = {
@@ -49,18 +44,14 @@ return {
         },
       },
       styles = {
-        above = {
-          position = "float",
-          border = "rounded",
+        notification = {
+          wo = { winblend = 0 },
           relative = "editor",
-          minimal = false,
-          wo = {
-            winhighlight = "Normal:SnacksNormal,NormalNC:SnacksNormalNC,WinBar:SnacksWinBar,WinBarNC:SnacksWinBarNC",
-          },
-          bo = { filetype = "snacks_above" },
-          keys = {
-            q = "close",
-          },
+        },
+        float = {
+          position = "float",
+          keys = { q = "close" },
+          relative = "editor",
         },
       },
       dashboard = {

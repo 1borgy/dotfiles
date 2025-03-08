@@ -12,8 +12,8 @@ alias nvi="command nvim"
 alias nv="command nvim"
 alias n="command nvim"
 
-function terminfo
-    infocmp -a $TERM | ssh -vvv $argv 'tic -x -o ~/.terminfo /dev/stdin'
+function terminfo --wraps ssh --description "upload terminfo to remote host"
+    infocmp -a $TERM | ssh $argv 'tic -x -o ~/.terminfo /dev/stdin'
 end
 
 starship init fish | source

@@ -512,7 +512,6 @@ return {
           "toggleterm",
           "Trouble",
           "trouble",
-          -- "snacks_above",
         },
         callback = function()
           vim.b.miniindentscope_disable = true
