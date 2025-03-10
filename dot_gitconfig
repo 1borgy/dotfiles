@@ -1,19 +1,49 @@
 [include]
-path = "~/.gitconfig_local"
-
-[alias]
-fixup = "!git add .; git commit --fixup HEAD"
-die = "reset --hard HEAD"
-branch-name = "!git rev-parse --abbrev-ref HEAD"
-publish = "!git push -u origin $(git branch-name)"
-hist = "!git log --pretty='%Cred%h%Creset %Cblue%an%Creset %Cgreen%s%Creset' -n 20"
-
+        path = "~/.gitconfig_local"
 [core]
-editor = nvim
-excludesFile = "~/.gitignore"
-
+        excludesFile = "~/.gitignore"
+	editor = nvim
+[alias]
+        fixup = "!git add .; git commit --fixup HEAD"
+        die = "reset --hard HEAD"
+        branch-name = "!git rev-parse --abbrev-ref HEAD"
+        publish = "!git push -u origin $(git branch-name)"
+        hist = "!git log --pretty='%Cred%h%Creset %Cgreen%s%Creset %Cblue%an%Creset' -n 20"
+[column]
+        ui = auto
+[branch]
+        sort = -committerdate
+[tag]
+        sort = version:refname
+[init]
+        defaultBranch = main
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[pull]
+        rebase = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
+[help]
+        autocorrect = prompt
+[commit]
+        verbose = true
+[rerere]
+        enabled = true
+        autoupdate = true
 [rebase]
-autosquash = true
-
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
+[merge]
+        conflictstyle = zdiff3 
 [gpg]
-format = ssh
+        format = ssh
