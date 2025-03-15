@@ -266,9 +266,38 @@ return {
   {
     "OXY2DEV/markview.nvim",
     event = "VeryLazy",
-    opts = {},
+    enabled = false,
+    opts = function()
+      local colors = require("nyappuccin.colors")
+      return {
+        highlight_groups = {
+          MarkviewCode = { bg = tostring(colors.mantle) },
+          MarkviewIcon0 = { link = "MarkviewCode" },
+          MarkviewIcon1 = { link = "MarkviewCode" },
+          MarkviewIcon2 = { link = "MarkviewCode" },
+          MarkviewIcon3 = { link = "MarkviewCode" },
+          MarkviewIcon4 = { link = "MarkviewCode" },
+          MarkviewIcon5 = { link = "MarkviewCode" },
+          MarkviewIcon6 = { link = "MarkviewCode" },
+          MarkviewCodeFg = { link = "MarkviewCode" },
+          MarkviewCodeInfo = { link = "MarkviewCode" },
+          MarkviewInlineCode = { link = "MarkviewCode" },
+        },
+      }
+    end,
     keys = {
       { "<leader>um", "<Cmd>Markview toggle<CR>", desc = "toggle markdown" },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+    keys = {
+      { "<leader>um", "<Cmd>RenderMarkdown toggle<CR>", desc = "toggle markdown" },
     },
   },
   {
@@ -559,7 +588,7 @@ return {
           vim.fn.chanclose(job_id, "stdin")
           vim.fn.jobwait({ job_id })
           return require("mini.files").default_sort(vim.tbl_filter(function(entry)
-            return not vim.tbl_contains(output_lines, entry.path) or entry.name == ".local"
+            return not vim.tbl_contains(output_lines, entry.path) or string.match(entry.path, ".local")
           end, entries))
         end,
       },

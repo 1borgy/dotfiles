@@ -6,6 +6,8 @@ return {
     -- dir = "/Users/ellie/dev/nyappuccin.nvim",
     dependencies = "rktjmp/lush.nvim",
     priority = 10000,
-    opts = {},
+    init = function()
+      vim.cmd.colorscheme("nyappuccin")
+    end,
   },
 }
