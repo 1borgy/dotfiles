@@ -1,3 +1,5 @@
+set --universal nvm_default_version v23.10.0
+
 alias ls="command eza -la --icons --no-user"
 
 alias activate=". .venv/bin/activate.fish"
