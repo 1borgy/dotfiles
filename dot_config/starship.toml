@@ -1,22 +1,21 @@
 [character]
-success_symbol='[.₊⊹ 󱞩 ](bold purple)'
-error_symbol='[.₊⊹ 󱞩 ](bold blue)'
+success_symbol = '[.₊⊹ 󱞩 ](bold purple)'
+error_symbol = '[.₊⊹ 󱞩 ](bold blue)'
 
 [hostname]
-style="bold yellow"
+style = "bold yellow"
 ssh_symbol = " "
 
 [username]
-style_user="bold red"
+style_user = "bold red"
 
 [package]
 symbol = "󰏗 "
-# symbol="  "
-style="bold red"
+style = "bold red"
 
 [aws]
 symbol = "  "
-disabled=true
+disabled = true
 
 [buf]
 symbol = " "
@@ -100,6 +99,7 @@ symbol = "󰆥 "
 symbol = " "
 
 [nodejs]
+disabled = true
 symbol = " "
 
 [ocaml]
