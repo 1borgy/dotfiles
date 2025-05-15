@@ -174,3 +174,6 @@ map("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
 -- map("n", "<C-tab>", ":tabn<CR>", { noremap = true })
 -- map("n", "<C-S-t>", ":tab terminal<CR>", { noremap = true })
 -- map("n", "<C-S-w>", ":tabclose<CR>", { noremap = true })
+
+map("n", "<leader>ca", vim.lsp.buf.code_action)
+map("n", "<leader>cr", vim.lsp.buf.rename)

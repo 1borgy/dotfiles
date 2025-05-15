@@ -34,7 +34,7 @@ return {
       dim = { duration = { step = 15, total = 150 } },
       terminal = { win = { style = "float", border = "rounded", wo = { cursorline = true } } },
       notifier = {
-        margin = { right = 3, bottom = 1 },
+        margin = { right = 3, bottom = 1, top = 1 },
         top_down = false,
       },
       scroll = {
@@ -126,10 +126,8 @@ return {
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
       { "<leader>Z", function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
-      { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-      { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<leader>uN", function() Snacks.notifier.show_history() end, desc = "Notification History" },
+      { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification" },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>bD", function() Snacks.bufdelete.all() end, desc = "Delete All Buffers" },
       { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },

@@ -257,6 +257,7 @@ return {
     cmd = "Trouble",
     opts = {
       win = { position = "right" },
+      auto_preview = false,
       modes = {
         symbols = {
           desc = "document symbols",

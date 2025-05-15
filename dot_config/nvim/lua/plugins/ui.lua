@@ -14,7 +14,11 @@ return {
     end,
     opts = function()
       local icons = require("config.icons")
-      local theme = require("lualine.nyappuccin").get()
+      local success, nyappuccin = pcall(require, "lualine.nyappuccin")
+      local theme = nil
+      if success then
+        theme = nyappuccin.get()
+      end
       return {
         options = {
           theme = theme,
@@ -54,16 +58,25 @@ return {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach", -- Or `LspAttach`
     priority = 1000, -- needs to be loaded in first
-    -- enabled = false,
+    enabled = false,
     opts = function()
-      local C = require("nyappuccin.colors")
+      local success, C = pcall(require, "nyappuccin.colors")
+      local mixing_color = nil
+      if success then
+        mixing_color = tostring(C.base)
+      end
+
       return {
         hi = {
-          mixing_color = tostring(C.base),
+          mixing_color = mixing_color,
         },
         options = {
           use_icons_from_diagnostic = true,
           multilines = true,
+          severity = {
+            vim.diagnostic.severity.ERROR,
+            -- vim.diagnostic.severity.WARN,
+          },
         },
         signs = {
           left = "",
