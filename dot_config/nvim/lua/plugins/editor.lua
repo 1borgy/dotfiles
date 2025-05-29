@@ -78,6 +78,14 @@ return {
         mode = { "n", "v" },
         desc = "find+replace (ast-grep)",
       },
+      {
+        "<leader>sG",
+        function()
+          require("grug-far").open({ engine = "astgrep-rules" })
+        end,
+        mode = { "n", "v" },
+        desc = "find+replace (ast-grep rules)",
+      },
     },
   },
   {
