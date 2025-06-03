@@ -4,6 +4,7 @@
         excludesFile = "~/.gitignore"
 	editor = nvim
 [alias]
+        amend = "!git add .; git commit --amend --no-edit"
         fixup = "!git add .; git commit --fixup HEAD"
         die = "reset --hard HEAD"
         branch-name = "!git rev-parse --abbrev-ref HEAD"

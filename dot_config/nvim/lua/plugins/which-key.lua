@@ -5,6 +5,7 @@ return {
     preset = "modern",
     win = { row = -2 },
     spec = {
+      { "<leader>a", group = "ai (codecompanion)" },
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
       { "<leader>f", group = "file/find" },

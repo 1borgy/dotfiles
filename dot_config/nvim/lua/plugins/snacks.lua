@@ -49,6 +49,7 @@ return {
           relative = "editor",
         },
         float = {
+          backdrop = 80,
           position = "float",
           keys = { q = "close" },
           relative = "editor",

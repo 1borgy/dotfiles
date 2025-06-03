@@ -1,5 +1,5 @@
 return {
-  { "nmac427/guess-indent.nvim", opts = {} },
+  { "nmac427/guess-indent.nvim", event = "BufReadPre", opts = {} },
   {
     "smjonas/inc-rename.nvim",
     opts = {
@@ -41,7 +41,7 @@ return {
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, just = true }
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -49,11 +49,13 @@ return {
       end,
       formatters_by_ft = {
         lua = { "stylua" },
+        yaml = { "yamlfmt" },
         -- Conform can also run multiple formatters sequentially
         python = { "ruff_format" },
+        json = { "prettier" },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { "eslint" },
       },
     },
   },
@@ -134,7 +136,7 @@ return {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
     opts = {
-      modes = { insert = true, command = true, terminal = false },
+      modes = { insert = true, command = false, terminal = false },
       -- skip autopair when next character is one of these
       skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
       -- skip autopair when the cursor is inside these treesitter nodes
@@ -357,6 +359,22 @@ return {
         silent = true,
         desc = "code: generate docstring",
       },
+    },
+  },
+  {
+    "RazgrizHsu/exer.nvim",
+    opts = {},
+    keys = {
+      { "<leader>ro", "<cmd>ExerOpen<cr>", desc = "Open task picker" },
+      -- { "<leader>rr", "<cmd>ExerRedo<cr>", desc = "Re-run last task" },
+      { "<leader>rx", "<cmd>ExerStop<cr>", desc = "Stop all running tasks" },
+      { "<leader>rr", "<cmd>ExerShow<cr>", desc = "Toggle task output window" },
+      { "<C-w>t", "<cmd>ExerFocusUI<cr>", desc = "Focus task UI" },
+      -- Task navigation (requires enable_navigation = true)
+      { "<C-j>", "<cmd>ExerNavDown<cr>", desc = "Task navigation down" },
+      { "<C-k>", "<cmd>ExerNavUp<cr>", desc = "Task navigation up" },
+      { "<C-h>", "<cmd>ExerNavLeft<cr>", desc = "Task navigation left" },
+      { "<C-l>", "<cmd>ExerNavRight<cr>", desc = "Task navigation right" },
     },
   },
 }

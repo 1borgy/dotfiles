@@ -1,4 +1,8 @@
 set --universal nvm_default_version v23.10.0
+set --universal fish_cursor_default block
+set --universal fish_cursor_insert block
+set --universal fish_cursor_replace_one block
+set --universal fish_cursor_visual block
 
 alias ls="command eza -la --icons --no-user"
 

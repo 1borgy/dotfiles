@@ -1,7 +1,9 @@
 return {
+  { "jake-stewart/force-cul.nvim", event = "VeryLazy", opts = {} },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    -- enabled = false,
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
       if vim.fn.argc(-1) > 0 then
@@ -50,45 +52,35 @@ return {
     end,
   },
   {
-    "sphamba/smear-cursor.nvim",
+    "sschleemilch/slimline.nvim",
     event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach", -- Or `LspAttach`
-    priority = 1000, -- needs to be loaded in first
     enabled = false,
-    opts = function()
-      local success, C = pcall(require, "nyappuccin.colors")
-      local mixing_color = nil
-      if success then
-        mixing_color = tostring(C.base)
-      end
-
-      return {
-        hi = {
-          mixing_color = mixing_color,
-        },
-        options = {
-          use_icons_from_diagnostic = true,
-          multilines = true,
-          severity = {
-            vim.diagnostic.severity.ERROR,
-            -- vim.diagnostic.severity.WARN,
+    opts = {
+      configs = {
+        mode = {
+          verbose = true, -- Mode as single letter or as a word
+          hl = {
+            normal = "Type",
+            insert = "Function",
+            pending = "Boolean",
+            visual = "Keyword",
+            command = "String",
           },
         },
-        signs = {
-          left = "",
-          right = "",
-          diag = "●",
-          arrow = "   ",
-          up_arrow = "    ",
-          vertical = " │",
-          vertical_end = " └",
-        },
-      }
-    end,
+      },
+      -- Global highlights
+      hl = {
+        base = "Normal", -- highlight of the background
+        primary = "Comment", -- highlight of primary parts (e.g. filename)
+        secondary = "Normal", -- highlight of secondary parts (e.g. filepath)
+      },
+    },
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    -- enabled = false,
+    event = "VeryLazy",
+    opts = {},
   },
   {
     "nanozuki/tabby.nvim",
@@ -131,37 +123,41 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    enabled = false,
-        -- stylua: ignore
-        keys = {
-            { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "toggle pin" },
-            { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "delete non-pinned buffers" },
-            { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "delete other buffers" },
-            { "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "delete buffers to the right" },
-            { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "delete buffers to the left" },
-            { "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "prev buffer" },
-            { "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "next buffer" },
-            { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "prev buffer" },
-            { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "next buffer" },
-            { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "move buffer prev" },
-            { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "move buffer next" },
-        },
+    -- enabled = false,
+    keys = {
+      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "toggle pin" },
+      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "delete non-pinned buffers" },
+      { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "delete other buffers" },
+      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "delete buffers to the right" },
+      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "delete buffers to the left" },
+      { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "prev buffer" },
+      { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "next buffer" },
+      { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "prev buffer" },
+      { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "next buffer" },
+      { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "move buffer prev" },
+      { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "move buffer next" },
+    },
     opts = function()
-      local palette = require("colors").palette
+      local bufferline = require("bufferline")
+
+      local success, C = pcall(require, "nyappuccin.colors")
+      local highlights = {}
+      if success then
+        highlights = {
+          fill = { bg = tostring(C.base) },
+          indicator_selected = { fg = tostring(C.lavender) },
+        }
+      end
 
       return {
-        highlights = {
-          fill = {
-            bg = tostring(palette.mantle),
-          },
-        },
+        highlights = highlights,
         options = {
+          style_preset = { bufferline.style_preset.no_italic },
+          -- style_preset = { bufferline.style_preset.minimal },
           mode = "buffers",
           always_show_bufferline = false,
           diagnostics = "nvim_lsp",
-          indicator = {
-            style = "underline",
-          },
+          indicator = { style = "underline" },
           show_buffer_close_icons = false,
           show_close_icon = false,
         },
@@ -179,19 +175,37 @@ return {
       })
     end,
   },
-  {
-    "yorickpeterse/nvim-pqf",
-    config = true,
-  },
+  { "yorickpeterse/nvim-pqf", event = "VeryLazy", opts = {} },
   {
     "Bekaboo/dropbar.nvim",
-    -- optional, but required for fuzzy finder support
-    -- dependencies = {
-    --   'nvim-telescope/telescope-fzf-native.nvim',
-    --   build = 'make'
-    -- },
     event = "VeryLazy",
     opts = {
+      bar = {
+        enable = function(buf, win, _)
+          if
+            not vim.api.nvim_buf_is_valid(buf)
+            or not vim.api.nvim_win_is_valid(win)
+            or vim.fn.win_gettype(win) ~= ""
+            or vim.wo[win].winbar ~= ""
+            or vim.bo[buf].ft == "help"
+            or vim.bo[buf].ft == "codecompanion"
+          then
+            return false
+          end
+
+          local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
+          if stat and stat.size > 1024 * 1024 then
+            return false
+          end
+
+          return vim.bo[buf].ft == "markdown"
+            or pcall(vim.treesitter.get_parser, buf)
+            or not vim.tbl_isempty(vim.lsp.get_clients({
+              bufnr = buf,
+              method = "textDocument/documentSymbol",
+            }))
+        end,
+      },
       menu = {
         preview = false,
         entry = {
@@ -277,47 +291,13 @@ return {
     },
   },
   {
-    "OXY2DEV/markview.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    opts = function()
-      local colors = require("nyappuccin.colors")
-      return {
-        highlight_groups = {
-          MarkviewCode = { bg = tostring(colors.mantle) },
-          MarkviewIcon0 = { link = "MarkviewCode" },
-          MarkviewIcon1 = { link = "MarkviewCode" },
-          MarkviewIcon2 = { link = "MarkviewCode" },
-          MarkviewIcon3 = { link = "MarkviewCode" },
-          MarkviewIcon4 = { link = "MarkviewCode" },
-          MarkviewIcon5 = { link = "MarkviewCode" },
-          MarkviewIcon6 = { link = "MarkviewCode" },
-          MarkviewCodeFg = { link = "MarkviewCode" },
-          MarkviewCodeInfo = { link = "MarkviewCode" },
-          MarkviewInlineCode = { link = "MarkviewCode" },
-        },
-      }
-    end,
-    keys = {
-      { "<leader>um", "<Cmd>Markview toggle<CR>", desc = "toggle markdown" },
-    },
-  },
-  {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+    ft = { "markdown", "codecompanion" },
     opts = {},
     keys = {
       { "<leader>um", "<Cmd>RenderMarkdown toggle<CR>", desc = "toggle markdown" },
     },
-  },
-  {
-    "jake-stewart/force-cul.nvim",
-    config = function()
-      require("force-cul").setup()
-    end,
   },
   {
     "folke/noice.nvim",
@@ -477,6 +457,12 @@ return {
     end,
   },
   {
+    "echasnovski/mini.diff",
+    opts = {
+      view = { style = "sign", signs = { add = "▏", change = "▏", delete = "▏" } },
+    },
+  },
+  {
     "echasnovski/mini.icons",
     opts = {
       file = {
@@ -572,38 +558,47 @@ return {
         go_in_plus = "l",
       },
       content = {
-        -- sauce: https://github.com/mrjones2014/dotfiles/commit/31f7988420e5418925022c524de04934e02a427c
-        sort = function(entries)
-          -- technically can filter entries here too, and checking gitignore for _every entry individually_
-          -- like I would have to in `content.filter` above is too slow. Here we can give it _all_ the entries
-          -- at once, which is much more performant.
-          local all_paths = table.concat(
-            vim.tbl_map(function(entry)
-              return entry.path
-            end, entries),
-            "\n"
+        filter = function(entry)
+          return not vim.tbl_contains(
+            { "__pycache__", ".cursor", ".mypy_cache", ".pytest_cache", ".ropeproject", ".ruff_cache", ".venv" },
+            entry.name
           )
-          local output_lines = {}
-          local job_id = vim.fn.jobstart({ "git", "check-ignore", "--stdin" }, {
-            stdout_buffered = true,
-            on_stdout = function(_, data)
-              output_lines = data
-            end,
-          })
-
-          -- command failed to run
-          if job_id < 1 then
-            return entries
-          end
-
-          -- send paths via STDIN
-          vim.fn.chansend(job_id, all_paths)
-          vim.fn.chanclose(job_id, "stdin")
-          vim.fn.jobwait({ job_id })
-          return require("mini.files").default_sort(vim.tbl_filter(function(entry)
-            return not vim.tbl_contains(output_lines, entry.path) or string.match(entry.path, ".local")
-          end, entries))
         end,
+        -- sauce: https://github.com/mrjones2014/dotfiles/commit/31f7988420e5418925022c524de04934e02a427c
+        -- sort = function(entries)
+        --   -- technically can filter entries here too, and checking gitignore for _every entry individually_
+        --   -- like I would have to in `content.filter` above is too slow. Here we can give it _all_ the entries
+        --   -- at once, which is much more performant.
+        --   local all_paths = table.concat(
+        --     vim.tbl_map(function(entry)
+        --       return entry.path
+        --     end, entries),
+        --     "\n"
+        --   )
+        --   local output_lines = {}
+        --   local job_id = vim.fn.jobstart({ "git", "check-ignore", "--stdin" }, {
+        --     stdout_buffered = true,
+        --     on_stdout = function(_, data)
+        --       output_lines = data
+        --     end,
+        --   })
+        --
+        --   -- command failed to run
+        --   if job_id < 1 then
+        --     return entries
+        --   end
+        --
+        --   -- send paths via STDIN
+        --   vim.fn.chansend(job_id, all_paths)
+        --   vim.fn.chanclose(job_id, "stdin")
+        --   vim.fn.jobwait({ job_id })
+        --
+        --   local ignore = { "__pycache__" }
+        --
+        --   return require("mini.files").default_sort(vim.tbl_filter(function(entry)
+        --     return not vim.tbl_contains(output_lines, entry.path) or string.match(entry.path, ".local")
+        --   end, entries))
+        -- end,
       },
     },
     config = function(_, opts)
