@@ -1,0 +1,62 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export ANDROID_HOME:/opt/homebrew/bin
+SETUVAR --export ANSIBLE_COLLECTIONS_PATH:/Users/ellie/dev/delorean/\x2eansible_collections
+SETUVAR --export ANSIBLE_CONFIG:/Users/ellie/dev/delorean/ansible\x2ecfg
+SETUVAR --export EDITOR:nvim
+SETUVAR --export FZF_DEFAULT_OPTS:\x20\x2d\x2dcolor\x3dbg\x3a0\x2cfg\x3a7\x2chl\x3a3\x20\x2d\x2dcolor\x3dbg\x2b\x3a8\x2cfg\x2b\x3a0\x2chl\x2b\x3a11\x20\x2d\x2dcolor\x3dinfo\x3a5\x2cborder\x3a5\x2cprompt\x3a2\x20\x2d\x2dcolor\x3dpointer\x3a0\x2cmarker\x3a9\x2cspinner\x3a9\x2cheader\x3a1
+SETUVAR --export HOME:/Users/ellie
+SETUVAR --export IGNITION_PRETTY:1
+SETUVAR --export JAVA_HOME:/Library/Java/JavaVirtualMachines/temurin\x2d22\x2ejdk/Contents/Home
+SETUVAR __fish_initialized:3800
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/ryan\x2ebergman/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:/Users/ryan\x2ebergman/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/functions/_nvm_list\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/functions/nvm\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e/Users/ryan\x2ebergman/\x2econfig/fish/completions/nvm\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_color_autosuggestion:7b7595
+SETUVAR fish_color_cancel:e779de
+SETUVAR fish_color_command:9377f8
+SETUVAR fish_color_comment:8982a6
+SETUVAR fish_color_cwd:e79b88
+SETUVAR fish_color_cwd_root:bf616a
+SETUVAR fish_color_end:e79b88
+SETUVAR fish_color_error:e779de
+SETUVAR fish_color_escape:e779de
+SETUVAR fish_color_gray:7b7595
+SETUVAR fish_color_history_current:e5e9f0\x1e\x2d\x2dbold
+SETUVAR fish_color_host:798ffb
+SETUVAR fish_color_host_remote:75d1ba
+SETUVAR fish_color_keyword:e779de
+SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
+SETUVAR fish_color_normal:d0c7f5
+SETUVAR fish_color_operator:e095ef
+SETUVAR fish_color_option:75d1ba
+SETUVAR fish_color_param:b09efa
+SETUVAR fish_color_quote:75d1ba
+SETUVAR fish_color_redirection:e095ef
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d454059
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d454059
+SETUVAR fish_color_status:e779de
+SETUVAR fish_color_user:69caf7
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_cursor_default:block
+SETUVAR fish_cursor_insert:block
+SETUVAR fish_cursor_normal:block
+SETUVAR fish_cursor_replace_one:block
+SETUVAR fish_cursor_visual:block
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_background:\x1d
+SETUVAR fish_pager_color_completion:\x1d
+SETUVAR fish_pager_color_description:\x1d
+SETUVAR fish_pager_color_prefix:\x1d
+SETUVAR fish_pager_color_progress:\x1d
+SETUVAR fish_pager_color_secondary_background:\x1d
+SETUVAR fish_pager_color_secondary_completion:\x1d
+SETUVAR fish_pager_color_secondary_description:\x1d
+SETUVAR fish_pager_color_secondary_prefix:\x1d
+SETUVAR fish_pager_color_selected_background:\x1d
+SETUVAR fish_pager_color_selected_completion:\x1d
+SETUVAR fish_pager_color_selected_description:\x1d
+SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_user_paths:/Users/ryan\x2ebergman/\x2ecodeium/windsurf/bin\x1e/opt/homebrew/share/android\x2dcommandlinetools/build\x2dtools/34\x2e0\x2e0\x1e/opt/homebrew/Caskroom/android\x2dplatform\x2dtools/36\x2e0\x2e0/platform\x2dtools\x1e/Users/ellie/\x2elocal/bin\x1e/opt/homebrew/bin
+SETUVAR nvm_default_version:v23\x2e10\x2e0

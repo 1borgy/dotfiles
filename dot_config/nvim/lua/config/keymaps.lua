@@ -177,3 +177,7 @@ map("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
 
 map("n", "<leader>ca", vim.lsp.buf.code_action)
 map("n", "<leader>cr", vim.lsp.buf.rename)
+
+map("n", "<leader>yy", function()
+  vim.cmd(':let @+=expand("%:p")')
+end)
