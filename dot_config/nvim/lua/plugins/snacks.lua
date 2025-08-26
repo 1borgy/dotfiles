@@ -26,10 +26,14 @@ return {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      indent = { enabled = true },
+      indent = { enabled = true, scope = { enabled = false } },
       input = { enabled = true },
       quickfile = { enabled = true },
-      statuscolumn = { enabled = true },
+      statuscolumn = {
+        enabled = true,
+        left = { "git", "mark", "sign" }, -- priority of signs on the left (high to low)
+        right = { "fold" }, -- priority of signs on the right (high to low)
+      },
       words = { enabled = true },
       dim = { duration = { step = 15, total = 150 } },
       terminal = { win = { style = "float", border = "rounded", wo = { cursorline = true } } },

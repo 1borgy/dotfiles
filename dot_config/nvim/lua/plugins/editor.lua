@@ -266,7 +266,7 @@ return {
     "folke/trouble.nvim",
     cmd = "Trouble",
     opts = {
-      win = { position = "right" },
+      win = { position = "bottom" },
       auto_preview = false,
       modes = {
         symbols = {
