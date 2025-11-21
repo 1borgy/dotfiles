@@ -144,7 +144,7 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "quit all" })
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "inspect pos" })
-map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "inspect tree" })
+map("n", "<leader>uI", function() vim.treesitter.inspect_tree({command = "new"}) end, { desc = "inspect tree" })
 
 -- repeat last macro with ,
 map("n", ",", "@@", { desc = "repeat macro" })

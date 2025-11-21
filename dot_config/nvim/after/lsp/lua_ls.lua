@@ -1,21 +1,13 @@
 return {
   settings = {
     Lua = {
-      workspace = {
-        checkThirdParty = false,
-      },
-      codeLens = {
-        enable = true,
-      },
-      format = {
-        enable = true,
-      },
-      completion = {
-        callSnippet = "Replace",
-      },
-      doc = {
-        privateName = { "^_" },
-      },
+      workspace = { checkThirdParty = false },
+      codeLens = { enable = true },
+      semantic = { enable = false },
+      -- prefer stylua
+      format = { enable = false },
+      completion = { callSnippet = "Replace" },
+      doc = { privateName = { "^_" } },
       hint = {
         enable = true,
         setType = false,

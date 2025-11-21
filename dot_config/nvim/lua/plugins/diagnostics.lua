@@ -6,13 +6,7 @@ local diagnostic_opts = {
   jump = {
     severity = { min = vim.diagnostic.severity.WARN },
   },
-  -- virtual_text = false,
-  virtual_text = {
-    spacing = 4,
-    source = "if_many",
-    severity = { min = vim.diagnostic.severity.ERROR },
-    prefix = " ● ",
-  },
+  virtual_text = false,
   severity_sort = true,
   signs = {
     text = {
@@ -32,7 +26,7 @@ return {
     -- event = "LspAttach",
     event = "VeryLazy",
     priority = 1000, -- needs to be loaded in first
-    enabled = false,
+    enabled = true,
     opts = function()
       local success, C = pcall(require, "nyappuccin.colors")
       local mixing_color = nil
@@ -41,15 +35,14 @@ return {
       end
 
       return {
-        hi = {
-          mixing_color = mixing_color,
-        },
+        preset = "modern",
+        hi = { mixing_color = mixing_color },
         options = {
           use_icons_from_diagnostic = true,
           multilines = true,
           severity = {
             vim.diagnostic.severity.ERROR,
-            -- vim.diagnostic.severity.WARN,
+            vim.diagnostic.severity.WARN,
           },
         },
         signs = {

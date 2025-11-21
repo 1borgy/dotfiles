@@ -180,6 +180,15 @@ return {
     "Bekaboo/dropbar.nvim",
     event = "VeryLazy",
     opts = {
+      icons = {
+
+        ui = {
+          bar = {
+            separator = " ",
+            -- extends = '󰇘 ',
+          },
+        },
+      },
       bar = {
         enable = function(buf, win, _)
           if
@@ -562,7 +571,7 @@ return {
           return not vim.tbl_contains(
             { "__pycache__", ".cursor", ".mypy_cache", ".pytest_cache", ".ropeproject", ".ruff_cache", ".venv" },
             entry.name
-          )
+          ) and string.find(entry.name, ".dmypy") == nil
         end,
         -- sauce: https://github.com/mrjones2014/dotfiles/commit/31f7988420e5418925022c524de04934e02a427c
         -- sort = function(entries)
@@ -626,6 +635,16 @@ return {
           end
         end,
         desc = "explorer",
+      },
+      {
+        "<leader>E",
+        function()
+          if not MiniFiles.close() then
+            MiniFiles.open(vim.api.nvim_buf_get_name(0))
+            MiniFiles.reveal_cwd()
+          end
+        end,
+        desc = "explorer (focus current file)",
       },
     },
   },

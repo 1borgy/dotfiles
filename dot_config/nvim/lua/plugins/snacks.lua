@@ -68,17 +68,14 @@ return {
             { icon = "󰒲 ", key = "l", desc = "lazy...", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit...", action = ":qa" },
           },
-                    -- stylua: ignore start
-                    ---@format disable
-                    header = [[
+          -- stylua: ignore
+          header = [[
          ✩ ‧₊˚        
 ✿ ∩⌒ ∩     ੈ  *        
  ≧ ω ≦     ╱|、     
 ┏━━━Ü━Ü━━┓  (˚ˎ ｡7    
 ┃ neovim ┃   |、˜〵   
 ┗━━━━━━━━┛   じしˍ,)ノ]],
-          ---@format enable
-          -- stylua: ignore end
         },
         -- item field formatters
         sections = {
@@ -88,6 +85,26 @@ return {
         },
         footer = { "hii", align = "center" },
       },
+      picker = {
+        formatters = {
+          file = {
+            -- filename_first = true,
+            truncate = "left",
+            min_width = 50,
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["<c-h>"] = { "layout_left", mode = { "i", "n" } },
+              ["<c-j>"] = { "layout_bottom", mode = { "i", "n" } },
+              ["<c-k>"] = { "layout_top", mode = { "i", "n" } },
+              ["<c-l>"] = { "layout_right", mode = { "i", "n" } },
+            },
+          },
+        },
+      },
+      gh = {},
     },
     -- stylua: ignore
     keys = {
@@ -141,12 +158,19 @@ return {
       { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
       { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
       -- git
-      { "<leader>gc", function() Snacks.picker.git_log() end, desc = "git log" },
-      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "git status" },
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "lazygit" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "git blame line" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "current file history (lazygit)" },
-      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "log (lazygit)" },
+      { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+      { "<leader>gB", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+      { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+      -- gh
+      { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+      { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+      { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+      { "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
@@ -178,7 +202,7 @@ return {
           Snacks.toggle.profiler_highlights():map("<leader>ph")
 
           Snacks.toggle.inlay_hints():map("<leader>uh")
-          Snacks.toggle.indent():map("<leader>ui")
+          -- Snacks.toggle.indent():map("<leader>ui")
         end,
       })
 
