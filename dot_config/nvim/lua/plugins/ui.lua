@@ -123,7 +123,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    enabled = false,
+    -- enabled = false,
     keys = {
       { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "toggle pin" },
       { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "delete non-pinned buffers" },

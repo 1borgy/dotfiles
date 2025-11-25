@@ -2,13 +2,13 @@ return {
   { "nmac427/guess-indent.nvim", event = "BufReadPre", opts = {} },
   {
     "smjonas/inc-rename.nvim",
+    event = "VeryLazy",
     opts = {
       input_buffer_type = "dressing",
     },
     config = function()
       require("inc_rename").setup({})
     end,
-    event = "VeryLazy",
     keys = {
       {
         "<leader>cr",
@@ -362,19 +362,24 @@ return {
     },
   },
   {
-    "RazgrizHsu/exer.nvim",
+    "esmuellert/vscode-diff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+  {
+    "mrjones2014/smart-splits.nvim",
     opts = {},
     keys = {
-      { "<leader>ro", "<cmd>ExerOpen<cr>", desc = "Open task picker" },
-      -- { "<leader>rr", "<cmd>ExerRedo<cr>", desc = "Re-run last task" },
-      { "<leader>rx", "<cmd>ExerStop<cr>", desc = "Stop all running tasks" },
-      { "<leader>rr", "<cmd>ExerShow<cr>", desc = "Toggle task output window" },
-      { "<C-w>t", "<cmd>ExerFocusUI<cr>", desc = "Focus task UI" },
-      -- Task navigation (requires enable_navigation = true)
-      { "<C-j>", "<cmd>ExerNavDown<cr>", desc = "Task navigation down" },
-      { "<C-k>", "<cmd>ExerNavUp<cr>", desc = "Task navigation up" },
-      { "<C-h>", "<cmd>ExerNavLeft<cr>", desc = "Task navigation left" },
-      { "<C-l>", "<cmd>ExerNavRight<cr>", desc = "Task navigation right" },
+      -- stylua: ignore start
+      { "<C-h>", function() require("smart-splits").move_cursor_left() end, mode = "n", desc = "move cursor left" },
+      { "<C-j>", function() require("smart-splits").move_cursor_down() end, mode = "n", desc = "move cursor down" },
+      { "<C-k>", function() require("smart-splits").move_cursor_up() end, mode = "n", desc = "move cursor up" },
+      { "<C-l>", function() require("smart-splits").move_cursor_right() end, mode = "n", desc = "move cursor right" },
+      { "<A-h>", function() require("smart-splits").resize_left() end, mode = "n", desc = "resize left" },
+      { "<A-j>", function() require("smart-splits").resize_down() end, mode = "n", desc = "resize down" },
+      { "<A-k>", function() require("smart-splits").resize_up() end, mode = "n", desc = "resize up" },
+      { "<A-l>", function() require("smart-splits").resize_right() end, mode = "n", desc = "resize right" },
+      -- stylua: ignore end
     },
   },
 }
