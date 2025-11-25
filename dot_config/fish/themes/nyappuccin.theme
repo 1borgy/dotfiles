@@ -1,5 +1,5 @@
 # name: 'nyappuccin'
-# url: 'https://github.com/1borgy/nyappuccin.nvim'
+# url: 'https://github.com/1borgy/nyappuccin'
 # preferred_background: d0c7f5
 fish_color_normal d0c7f5
 fish_color_command 9377f8
@@ -8,15 +8,15 @@ fish_color_keyword e779de
 fish_color_quote 75d1ba
 fish_color_redirection e095ef
 fish_color_end e79b88
-fish_color_comment 8982a6
+fish_color_comment 877ea9
 fish_color_error e779de
-fish_color_gray 7b7595
-fish_color_selection --background=454059
-fish_color_search_match --background=454059
+fish_color_gray 766c9d
+fish_color_selection --background=433d5c
+fish_color_search_match --background=433d5c
 fish_color_option 75d1ba
 fish_color_operator e095ef
 fish_color_escape e779de
-fish_color_autosuggestion 7b7595
+fish_color_autosuggestion 766c9d
 fish_color_cancel e779de
 fish_color_cwd e79b88
 fish_color_user 69caf7

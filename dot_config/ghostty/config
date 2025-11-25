@@ -1,18 +1,20 @@
+theme = nyappuccin
+
 # font-family = "Iosevka Nerd Font"
 font-family = "Myosevka Nerd Font"
 font-size = 20
-adjust-underline-position = 15
+adjust-underline-position = 8
+
+maximize = true
+window-inherit-working-directory = false
 
 macos-titlebar-style = tabs
-theme = Nyappuccin
-
-window-inherit-working-directory = false
-maximize = true
+macos-option-as-alt = left
 
 keybind = ctrl+shift+t=new_tab
-
 keybind = ctrl+shift+5=new_split:right
 keybind = ctrl+shift+'=new_split:down
+
 keybind = ctrl+shift+h=goto_split:left
 keybind = ctrl+shift+j=goto_split:down
 keybind = ctrl+shift+k=goto_split:up
